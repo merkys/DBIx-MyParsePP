@@ -93,10 +93,12 @@ foreach my $function (@functions) {
 my $symbol_pm = 'lib/DBIx/MyParsePP/Symbols.pm';
 
 open (SYMBOL_MODULE, '>'.$symbol_pm) or die "unable to open $symbol_pm: $!";
-print SYMBOL_MODULE "package DBIx::MyParsePP::Symbols;\n1;\n";
-print SYMBOL_MODULE Data::Dumper->Dump([\%symbols, \%functions], [qw(symbols functions)]);
+print SYMBOL_MODULE "package DBIx::MyParsePP::Symbols;\n\n";
+print SYMBOL_MODULE "use strict;\nuse warnings;\n\nour ";
+print SYMBOL_MODULE Data::Dumper->Dump([\%symbols], [qw(symbols)]);
+print SYMBOL_MODULE "\nour ";
+print SYMBOL_MODULE Data::Dumper->Dump([\%functions], [qw(functions)]);
 print SYMBOL_MODULE "\n1;\n";
-
 
 # ==================== Character Sets ==============================
 
