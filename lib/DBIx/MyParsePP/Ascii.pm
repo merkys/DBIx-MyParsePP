@@ -1,6 +1,9 @@
 package DBIx::MyParsePP::Ascii;
-1;
-$ctype = [
+
+use strict;
+use warnings;
+
+our $ctype = [
            0,
            32,
            32,

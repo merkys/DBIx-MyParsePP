@@ -1,5 +1,8 @@
 package DBIx::MyParsePP::Latin1;
-1;
+
+use strict;
+use warnings;
+
 $ctype = [
            0,
            32,

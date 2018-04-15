@@ -1,6 +1,9 @@
 package DBIx::MyParsePP::Symbols;
-1;
-$symbols = {
+
+use strict;
+use warnings;
+
+our $symbols = {
              '' => undef,
              'JOIN' => 'JOIN_SYM',
              'SERIALIZABLE' => 'SERIALIZABLE_SYM',
@@ -507,7 +510,7 @@ $symbols = {
              'MASTER' => 'MASTER_SYM',
              'ROW_FORMAT' => 'ROW_FORMAT_SYM'
            };
-$functions = {
+our $functions = {
                'MIN' => 'MIN_SYM',
                'HEX' => 'FUNC_ARG1',
                'STDDEV_SAMP' => 'STDDEV_SAMP_SYM',

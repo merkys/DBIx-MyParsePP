@@ -1,6 +1,9 @@
 package DBIx::MyParsePP::Charsets;
-1;
-$charsets = {
+
+use strict;
+use warnings;
+
+our $charsets = {
               'shift-jis' => 'shift-jis',
               'windows-1256' => 'windows-1256',
               'iso-8859-13' => 'iso-8859-13',
