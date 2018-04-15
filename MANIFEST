@@ -10,6 +10,8 @@ t/error.t
 t/extract.t
 t/fields.t
 t/options.t
+t/isequal.t
+t/quoted_hostname.t
 
 bin/myparsepp.pl
 bin/mylexpp.pl
