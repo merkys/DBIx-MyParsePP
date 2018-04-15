@@ -3,7 +3,7 @@ package DBIx::MyParsePP::Latin1;
 use strict;
 use warnings;
 
-$ctype = [
+our $ctype = [
            0,
            32,
            32,
