@@ -14,12 +14,14 @@
 # Based on code Copyright (C) 2000-2006 MySQL AB
 
 package DBIx::MyParsePP::Lexer;
-require Exporter;
-@ISA = qw(Exporter);
-@EXPORT = qw(MODE_PIPES_AS_CONCAT MODE_ANSI_QUOTES MODE_IGNORE_SPACE MODE_NO_BACKSLASH_ESCAPES
-		CLIENT_MULTI_STATEMENTS MODE_HIGH_NOT_PRECEDENCE);
 
 use strict;
+use warnings;
+
+require Exporter;
+our @ISA = qw(Exporter);
+our @EXPORT = qw(MODE_PIPES_AS_CONCAT MODE_ANSI_QUOTES MODE_IGNORE_SPACE MODE_NO_BACKSLASH_ESCAPES
+                 CLIENT_MULTI_STATEMENTS MODE_HIGH_NOT_PRECEDENCE);
 
 use DBIx::MyParsePP::Symbols;
 use DBIx::MyParsePP::Charsets;

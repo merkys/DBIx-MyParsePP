@@ -1,5 +1,7 @@
 package DBIx::MyParsePP;
+
 use strict;
+use warnings;
 
 use DBIx::MyParsePP::Lexer;
 use DBIx::MyParsePP::Parser;

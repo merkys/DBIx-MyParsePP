@@ -1,10 +1,8 @@
-
 package DBIx::MyParsePP::Token;
 
-use DBIx::MyParsePP::Symbols;
 use strict;
-
-1;
+use warnings;
+use DBIx::MyParsePP::Symbols;
 
 use constant TOKEN_TYPE		=> 0;
 use constant TOKEN_VALUE	=> 1;
@@ -98,7 +96,8 @@ sub toString {
 		return '@';	# No leading space
 	} elsif (($type eq 'IDENT') || ($type eq 'LEX_HOSTNAME')) {
 		return $value.' ';	# No leading space
-	} elsif ($DBIx::MyParsePP::Symbols::functions->{uc($value)} eq $type) {
+	} elsif (defined $DBIx::MyParsePP::Symbols::functions->{uc($value)} &&
+             $DBIx::MyParsePP::Symbols::functions->{uc($value)} eq $type) {
 		return ' '.$value;	# No trailing space
 	} elsif ($type eq '(') {
 		return $value.' ';	# No leading space;

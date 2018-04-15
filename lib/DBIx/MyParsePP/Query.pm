@@ -1,6 +1,7 @@
 package DBIx::MyParsePP::Query;
-use strict;
 
+use strict;
+use warnings;
 use DBIx::MyParsePP::Lexer;
 use DBIx::MyParsePP::Rule;
 
