@@ -37,7 +37,7 @@ foreach my $q (1..20) {
 
 $second =~ s{/\*.*?\*/}{}sgio;
 
-my @new_rules;
+my @new_rules = ( "top_level:\n        query " . '{ return [@_[1..$#_]] } ;' );
 
 my @orig_rules = $second =~ m{([A-z0-9_]*?):(.*?);[^'"]}sgio;
 
@@ -53,11 +53,11 @@ while (my ($rule_name, $rule_body) = splice(@orig_rules, 0, 2)) {
 		push @new_parts, $new_part;
 	}
 
-	my $new_rule = "$rule_name:\n".join("\n|", @new_parts).";\n\n";
+	my $new_rule = "$rule_name:\n".join("\n|", @new_parts).";";
 	push @new_rules, $new_rule;
 };
 
-my $new_rules = join("\n", @new_rules);
+my $new_rules = join("\n\n\n", @new_rules);
 
 my $new_epilogue;
 
