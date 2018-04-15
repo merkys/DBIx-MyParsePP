@@ -6,7 +6,7 @@ use strict;
 use Data::Dumper;
 
 my $orig_file = 'mysql/sql_yacc.yy';
-my $new_file = 'mysql/myparsepp.yy';
+my $new_file = 'myparsepp.yy';
 open (ORIG, "$orig_file") or die $!;
 read (ORIG, my $orig, -s $orig_file);
 
