@@ -6,6 +6,8 @@ use strict;
 use warnings;
 use Data::Dumper;
 
+$Data::Dumper::Sortkeys = 1;
+
 my $orig_file = 'mysql/sql_yacc.yy';
 my $new_file = 'myparsepp.yy';
 open (ORIG, "$orig_file") or die $!;
@@ -112,7 +114,8 @@ map { $charsets{$_} = $_ } @charsets;	# Convert array into hash
 my $charset_pm = 'lib/DBIx/MyParsePP/Charsets.pm';
 
 open (CHARSET_MODULE, '>'.$charset_pm) or die "unable to open $charset_pm: $!";
-print CHARSET_MODULE "package DBIx::MyParsePP::Charsets;\n1;\n";
+print CHARSET_MODULE "package DBIx::MyParsePP::Charsets;\n\n";
+print CHARSET_MODULE "use strict;\nuse warnings;\n\nour ";
 print CHARSET_MODULE Data::Dumper->Dump([\%charsets], [qw(charsets)]);
 print CHARSET_MODULE "\n1;\n";
 
@@ -132,6 +135,7 @@ my @ctype = map { hex($_) } @raw_map;
 my $char_pm = 'lib/DBIx/MyParsePP/Ascii.pm';
 
 open (CHAR_MODULE, '>'.$char_pm) or die "unable to open $char_pm: $!";
-print CHAR_MODULE "package DBIx::MyParsePP::Ascii;\n1;\n";
+print CHAR_MODULE "package DBIx::MyParsePP::Ascii;\n\n";
+print CHAR_MODULE "use strict;\nuse warnings;\n\nour ";
 print CHAR_MODULE Data::Dumper->Dump([\@ctype], [qw(ctype)]);
 print CHAR_MODULE "\n1;\n";
