@@ -6,7 +6,7 @@ use DBIx::MyParsePP::Parser;
 use DBIx::MyParsePP::Query;
 
 
-our $VERSION = '0.50';
+our $VERSION = '0.51';
 
 use constant MYPARSEPP_YAPP			=> 0;
 use constant MYPARSEPP_CHARSET			=> 1;
