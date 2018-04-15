@@ -3,6 +3,7 @@
 #
 
 use strict;
+use warnings;
 use Data::Dumper;
 
 my $orig_file = 'mysql/sql_yacc.yy';
@@ -97,7 +98,7 @@ print SYMBOL_MODULE "\n1;\n";
 
 # ==================== Character Sets ==============================
 
-my $charset_file = 'mysql/Index.xml';
+my $charset_file = 'mysql/share/charsets/Index.xml';
 open (CHARSET_FILE, $charset_file) or die "unable to open $charset_file: $!";
 read (CHARSET_FILE, my $charset_xml, -s $charset_file);
 
@@ -117,7 +118,7 @@ print CHARSET_MODULE "\n1;\n";
 
 # ==================== Characters ===================================
 
-my $char_file = 'mysql/ascii.xml';
+my $char_file = 'mysql/share/charsets/ascii.xml';
 open (CHAR_FILE, $char_file) or die "unable to open $char_file: $!";
 read (CHAR_FILE, my $char_xml, -s $char_file);
 
