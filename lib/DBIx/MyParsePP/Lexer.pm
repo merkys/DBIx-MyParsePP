@@ -335,7 +335,7 @@ sub MYSQLlex {
 			if (($c == ord('e')) || ($c == ord('E'))) {
 				if (
 					($lexer->my_isdigit($lexer->yyPeek())) ||
-					($c = $lexer->yyGet() == ord('+')) ||
+					(($c = $lexer->yyGet()) == ord('+')) ||
 					($c == ord('-'))
 				) {
 					if ($lexer->my_isdigit($lexer->yyPeek())) {
@@ -559,7 +559,7 @@ sub MYSQLlex {
 			while (
 				($lexer->[LEXER_PTR] != length($string) - 1) && 
 				(
-					($c = $lexer->yyGet() != ord('*')) ||
+					(($c = $lexer->yyGet()) != ord('*')) ||
 					($lexer->yyPeek() != ord('/'))
 				)
 			) {
