@@ -22,7 +22,7 @@ $orig =~ s{',' profile_def\n}{',' profile_def;\n\n}sgio;
 
 $orig =~ s{table_ref %prec TABLE_REF_PRIORITY normal_join table_ref}{table_ref normal_join table_ref %prec TABLE_REF_PRIORITY}sgio;
 
-$orig =~ s|%{.*?%}||sgio;
+$orig =~ s|%\{.*?%\}||sgio;
 
 my ($first, $second, $third) = split ("%%\n", $orig);
 
@@ -75,7 +75,7 @@ open (LEX_HEADER_FILE, $lex_header_name);
 read (LEX_HEADER_FILE, my $lex_header, -s $lex_header_name);
 
 my %symbols;
-my ($symbols) = $lex_header =~ m/symbols\[\] = {(.*?)};/sgio;
+my ($symbols) = $lex_header =~ m/symbols\[\] = \{(.*?)\};/sgio;
 my @symbols = split('},', $symbols);
 foreach my $symbol (@symbols) {
 	my ($keyword, $symbol) = $symbol =~ m{"(.*?)",.*?SYM\((.*?)\)}sio;
@@ -83,7 +83,7 @@ foreach my $symbol (@symbols) {
 }
 
 my %functions;
-my ($functions) = $lex_header =~ m/sql_functions\[\] = {(.*?)};/sgio;
+my ($functions) = $lex_header =~ m/sql_functions\[\] = \{(.*?)\};/sgio;
 my @functions = split('},', $functions);
 
 foreach my $function (@functions) {
