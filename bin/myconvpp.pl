@@ -59,10 +59,7 @@ while (my ($rule_name, $rule_body) = splice(@orig_rules, 0, 2)) {
 };
 
 my $new_rules = join("\n\n\n", @new_rules);
-
-my $new_epilogue;
-
-my $new = join("\n%%\n", $new_prologue, $new_rules, $new_epilogue);
+my $new = join("\n%%\n", $new_prologue, $new_rules, '');
 
 open (NEW, ">$new_file") or die $!;
 print NEW $new;
