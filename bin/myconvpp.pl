@@ -7,6 +7,7 @@ use warnings;
 use Data::Dumper;
 
 $Data::Dumper::Sortkeys = 1;
+$Data::Dumper::Indent = 1;
 
 my $orig_file = 'mysql/sql_yacc.yy';
 my $new_file = 'myparsepp.yy';
