@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 our $symbols = {
-  '' => undef,
   '!=' => 'NE',
   '&&' => 'AND_AND_SYM',
   '<' => 'LT',

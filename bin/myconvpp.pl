@@ -75,8 +75,10 @@ my %symbols;
 my ($symbols) = $lex_header =~ m/symbols\[\] = \{(.*?)\};/sgio;
 my @symbols = split('},', $symbols);
 foreach my $symbol (@symbols) {
-	my ($keyword, $symbol) = $symbol =~ m{"(.*?)",.*?SYM\((.*?)\)}sio;
-	$symbols{$keyword} = $symbol;
+    if( $symbol =~ m{"(.*?)",.*?SYM\((.*?)\)}sio ) {
+        my ($keyword, $symbol) = ($1, $2);
+        $symbols{$keyword} = $symbol;
+    }
 }
 
 my %functions;
