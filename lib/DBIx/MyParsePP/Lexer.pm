@@ -406,7 +406,7 @@ sub MYSQLlex {
 			my $lex_str;
 				
 			if ($double_quotes) {
-				$lex_str = $lexer->get_quoted_token($lexer->yyLength() - $double_quotes, $quote_char);
+				$lex_str = $lexer->get_quoted_token($lexer->yyLength(), $quote_char);
 			} else {
 				$lex_str = $lexer->get_token($lexer->yyLength());
 			}
@@ -823,6 +823,17 @@ sub get_token {
 	my ($lexer, $length) = @_;
 	$lexer->yyUnget();
 	return substr($lexer->[LEXER_STRING], $lexer->[LEXER_TOK_START], $length);
+}
+
+# Removes surrounding quotes, converts doubled quotes to single as per
+# MySQL standard.
+sub get_quoted_token {
+    my ($lexer, $length, $quote_char) = @_;
+    $lexer->yyUnget();
+    my $char = chr( $quote_char );
+    my $string = substr($lexer->[LEXER_STRING], $lexer->[LEXER_TOK_START], $length);
+    $string =~ s/\Q$char\E{2}/$char/g;
+    return $string;
 }
 
 use constant LONG_STR		=> "2147483647";
