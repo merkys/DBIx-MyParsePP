@@ -33,7 +33,7 @@ my @rights = $first =~ m{(%right[\s\t]*.*?)[\r\n]}gio;
 my $new_prologue = "$expect\n".join("\n",@lefts)."\n".join("\n", @rights);
 
 foreach my $q (1..20) {
-	$second =~ s|[^']{[^{}]*?}||sgio;
+	$second =~ s|[^']\{[^\{\}]*?\}||sgio;
 }
 
 $second =~ s{/\*.*?\*/}{}sgio;
