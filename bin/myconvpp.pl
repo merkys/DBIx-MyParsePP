@@ -14,10 +14,6 @@ my $new_file = 'myparsepp.yy';
 open (ORIG, "$orig_file") or die $!;
 read (ORIG, my $orig, -s $orig_file);
 
-# $fix missing ; in opt_profile_defs: rule 
-$orig =~ s{\| profile_defs\n}{| profile_defs;\n\n}sgio;
-$orig =~ s{',' profile_def\n}{',' profile_def;\n\n}sgio;
-
 # FIXME, remove %prec from JOIN
 
 $orig =~ s{table_ref %prec TABLE_REF_PRIORITY normal_join table_ref}{table_ref normal_join table_ref %prec TABLE_REF_PRIORITY}sgio;
