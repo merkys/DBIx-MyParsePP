@@ -14,10 +14,6 @@ my $new_file = 'myparsepp.yy';
 open (ORIG, "$orig_file") or die $!;
 read (ORIG, my $orig, -s $orig_file);
 
-# FIXME, remove %prec from JOIN
-
-$orig =~ s{table_ref %prec TABLE_REF_PRIORITY normal_join table_ref}{table_ref normal_join table_ref %prec TABLE_REF_PRIORITY}sgio;
-
 $orig =~ s|%\{.*?%\}||sgio;
 
 my ($first, $second, $third) = split ("%%\n", $orig);
