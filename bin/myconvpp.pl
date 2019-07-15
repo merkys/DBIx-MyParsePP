@@ -24,10 +24,10 @@ my @rights = $first =~ m{(%right[\s\t]*.*?)[\r\n]}gio;
 
 my $new_prologue = "$expect\n".join("\n",@lefts)."\n".join("\n", @rights);
 
-foreach my $q (1..20) {
-	$second =~ s|[^']\{[^\{\}]*?\}||sgio;
-}
+# Removing all the code
+while ($second =~ s|[^']\{[^\{\}]*?\}||sgio) {};
 
+# Removing comments
 $second =~ s{/\*.*?\*/}{}sgio;
 
 my @new_rules = ( "top_level:\n        query " . '{ return [@_[1..$#_]] } ;' );
@@ -67,7 +67,7 @@ my %symbols;
 my ($symbols) = $lex_header =~ m/symbols\[\] = \{(.*?)\};/sgio;
 my @symbols = split('},', $symbols);
 foreach my $symbol (@symbols) {
-    if( $symbol =~ m{"(.*?)",.*?SYM\((.*?)\)}sio ) {
+    if( $symbol =~ m{SYM\("(.*?)",\s*([^\)]*)\)}sio ) {
         my ($keyword, $symbol) = ($1, $2);
         $symbols{$keyword} = $symbol;
     }
