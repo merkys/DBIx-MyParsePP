@@ -1,0 +1,76 @@
+diff --git a/sql_yacc.yy b/sql_yacc.yy
+index 510459e..9e74bab 100644
+--- a/sql_yacc.yy
++++ b/sql_yacc.yy
+@@ -2199,6 +2199,7 @@ ignore_server_id:
+           {
+             Lex->mi.repl_ignore_server_ids.push_back($1);
+           }
++        ;
+ 
+ master_file_def:
+           MASTER_LOG_FILE_SYM EQ TEXT_STRING_sys_nonewline
+@@ -3499,6 +3500,7 @@ statement_information_item:
+             if ($$ == NULL)
+               MYSQL_YYABORT;
+           }
++        ;
+ 
+ simple_target_specification:
+           ident
+@@ -3574,6 +3576,7 @@ condition_information_item:
+             if ($$ == NULL)
+               MYSQL_YYABORT;
+           }
++        ;
+ 
+ condition_information_item_name:
+           CLASS_ORIGIN_SYM
+@@ -8361,6 +8364,7 @@ opt_index_lock_algorithm:
+         | alter_algorithm_option
+         | alter_lock_option alter_algorithm_option
+         | alter_algorithm_option alter_lock_option
++        ;
+ 
+ alter_algorithm_option:
+           ALGORITHM_SYM opt_equal DEFAULT
+@@ -8568,6 +8572,7 @@ slave_user_pass_opt:
+             Lex->slave_connection.password= $3.str;
+             Lex->contains_plaintext_password= true;
+           }
++        ;
+ 
+ slave_plugin_auth_opt:
+           {
+@@ -11329,6 +11334,7 @@ opt_temporary:
+ drop_ts_options_list:
+           /* empty */
+         | drop_ts_options
++        ;
+ 
+ drop_ts_options:
+           drop_ts_option
+@@ -11339,6 +11345,7 @@ drop_ts_options:
+ drop_ts_option:
+           opt_ts_engine
+         | ts_wait
++        ;
+ 
+ /*
+ ** Insert : add new data to table
+@@ -14056,6 +14063,7 @@ alter_instance_stmt:
+             Lex->sql_command= SQLCOM_ALTER_INSTANCE;
+             $$= NEW_PTN PT_alter_instance($3);
+           }
++        ;
+ 
+ alter_instance_action:
+           ROTATE_SYM ident_or_text MASTER_SYM KEY_SYM
+@@ -15435,6 +15443,7 @@ xa:
+ opt_convert_xid:
+           /* empty */ { $$= false; }
+          | CONVERT_SYM XID_SYM { $$= true; }
++        ;
+ 
+ xid:
+           text_string
