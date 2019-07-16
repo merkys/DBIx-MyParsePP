@@ -63,23 +63,21 @@ my $lex_header_name = 'mysql/lex.h';
 open (LEX_HEADER_FILE, $lex_header_name);
 read (LEX_HEADER_FILE, my $lex_header, -s $lex_header_name);
 
-my %symbols;
 my ($symbols) = $lex_header =~ m/symbols\[\] = \{(.*?)\};/sgio;
 my @symbols = split('},', $symbols);
+
+my %symbols;
+my %functions;
+
 foreach my $symbol (@symbols) {
     if( $symbol =~ m{SYM\("(.*?)",\s*([^\)]*)\)}sio ) {
-        my ($keyword, $symbol) = ($1, $2);
+        my( $keyword, $symbol ) = ( $1, $2 );
         $symbols{$keyword} = $symbol;
     }
-}
-
-my %functions;
-my ($functions) = $lex_header =~ m/sql_functions\[\] = \{(.*?)\};/sgio;
-my @functions = split('},', $functions);
-
-foreach my $function (@functions) {
-        my ($keyword, $symbol) = $function =~ m{"(.*?)",.*?SYM\((.*?)\)}sio;
-	$functions{$keyword} = $symbol;
+    if( $symbol =~ m{SYM_FN\("(.*?)",\s*([^\)]*)\)}sio ) {
+        my( $keyword, $symbol ) = ( $1, $2 );
+        $functions{$keyword} = $symbol;
+    }
 }
 
 my $symbol_pm = 'lib/DBIx/MyParsePP/Symbols.pm';
